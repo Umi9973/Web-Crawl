@@ -1,0 +1,22 @@
+# 这里是你文件的根目录
+path = "D:\\Newpaper\\2018"
+
+#Written in Python
+# 检查文件中是否包含关键词,若包含返回True, 若不包含返回False
+def checkKeyword(filename, kwList):
+    with open(filename, "r", encoding="utf-8") as f:
+        content = f.read()
+        for kw in kwList:
+            if kw in content:
+                return True, kw
+    return False, ""
+
+if __name__ == "__main__":
+    # 关键词数组
+    kwList = ["经济", "贸易"]
+    #遍历文章
+    for file in iterFilename(path):
+        res, kw = checkKeyword(file, kwList)
+        if res:
+            # 如果包含关键词，打印文件名和匹配到的关键词
+            print("文件 ", file," 中包含关键词 ", kw)
